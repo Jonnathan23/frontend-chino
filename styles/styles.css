@@ -1,0 +1,158 @@
+:root {
+    --blanco: rgb(255, 255, 255);
+    --gris_claro: rgb(103, 105, 144);
+    --morado-oscuro: rgb(31, 33, 56);
+    --morado-claro: rgb(62, 66, 104);
+
+    --crema_blanco: rgb(252, 252, 250);
+    --rosa: rgb(213, 182, 216);
+    --rosa-claro: rgb(253, 211, 231);
+
+}
+
+html {
+    font-size: 62.5%;
+    box-sizing: border-box;
+    scroll-snap-type: y mandatory;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-size: 16px;
+
+}
+
+
+/** HEADER */
+
+.nav-fondo {
+    background-color: var(--morado-claro);
+    box-shadow: 0px 11px 9px 2px rgba(33, 33, 33, 0.19);
+    display: grid;
+    grid-template-columns: 60% 40%;
+
+}
+
+.titulo {
+    text-align: left;
+    width: 100%;
+    color: var(--blanco);
+    margin-left: 10%;
+
+}
+
+.cont-nav {
+    max-width: 120rem;
+    margin: 0 auto;
+}
+
+.nav-principal {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+@media (min-width: 760px) {
+    .nav-fondo {
+        grid-template-columns: 50% 50%;
+    }
+
+    .nav-principal {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+}
+
+.nav-principal a {
+
+    padding: 1.5rem;
+    color: var(--blanco);
+    text-decoration: none;
+    font-weight: bold;
+    text-align: center;
+    margin: 0 1rem
+}
+
+.nav-principal a:hover {
+    background-color: var(--morado-oscuro);
+    color: #ffff;
+    border-radius: .5rem;
+}
+
+/** MAIN */
+
+
+main::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('../imgs/background.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    filter: blur(8px);
+    z-index: -1;
+}
+
+.form{
+
+}
+
+/** FOOTER */
+footer {
+    margin-top: auto;
+    width: 100%;
+    margin-top: 5rem;
+    background-color: var(--morado-oscuro);
+    padding: 3rem;
+}
+
+.contactos {
+    display: flex;
+    flex-direction: column;
+    color: var(--blanco);
+
+}
+
+@media (min-width: 480px) {
+
+    .contactos {
+        display: grid;
+        grid-template-columns: 50% 50%;
+
+    }
+
+    .contactos .contac-div {
+        width: 60%;
+        margin: auto;
+
+    }
+
+}
+
+
+.imagen-footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.imagen-footer img {
+    width: 80%;
+}
+
+footer .fecha {
+    color: var(--morado-claro);
+    text-align: center;
+    font-size: 1.5rem;
+}
