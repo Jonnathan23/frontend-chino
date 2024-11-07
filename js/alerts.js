@@ -15,3 +15,12 @@ export const updateSuccessfully = (message) => {
         timer: 5000
     })
 }
+
+export const warrnings = (message) =>{
+    Swal.fire({
+        title: 'Advertencia',
+        text: message,
+        icon: 'warning',
+        timer: 5000
+    })
+}

@@ -1,36 +1,67 @@
-import { errors, updateSuccessfully } from "./alerts.js";
-const url = 'http://localhost:4000/shifu/po';
+import { errors, updateSuccessfully, warrnings } from "./alerts.js";
+const url = 'https://backend-shifu.onrender.com/shifu/po';
 
 const btAbrir = document.getElementById('abrir')
 const btCerrar = document.getElementById('cerrar')
+const linkSignOut = document.getElementById('signOut')
 
-btAbrir.addEventListener('click', () => updateState (1))
-btCerrar.addEventListener('click',() => updateState(0))
+document.addEventListener('DOMContentLoaded', verifyLogin)
 
-function updateState(bit) {
-    console.log('Clic State' + bit)
-    fetch(`${url}/state`, {
-        method: 'PATCH',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            descripcion: bit
-        })
-    })
-    .then(response => {
+btAbrir.addEventListener('click', () => updateState(1))
+btCerrar.addEventListener('click', () => updateState(0))
+linkSignOut.addEventListener('click', signOut)
+
+
+
+function verifyLogin() {
+    const currentUser = JSON.parse(localStorage.getItem('currentUser'))        
+    if (!currentUser) window.location.href = 'index.html'
+}
+
+function signOut(){
+    localStorage.clear()
+}
+
+async function updateState(bit) {
+    
+    const state = await getState()
+    
+    if(state === bit) {
+        warrnings(`El estado ya es ${bit}`)
+        return
+    }
+    try {
+        const response = await fetch(`${url}/state`, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                descripcion: bit
+            })
+        });
+        
         if (!response.ok) {
-            errors('Error al cambiar el estado')
-            throw new Error('Error en la petición');
+            throw new Error('Error al cambiar el estado');
         }
-        return response.json();
-    })
-        .then(data => updateSuccessfully(`Se actualizo correctamente a ${data.data.descripcion}`))
-        .catch(error => {
-            errors('Error al actualizar el estado')
-            console.error('Error:', error);
-        })
+        
+        const data = await response.json();
+        updateSuccessfully(`Se actualizó correctamente a ${data.data.descripcion}`);
+    } catch (error) {
+        errors('Error al actualizar el estado');        
+    }
 
+}
 
+async function getState(){
+    try {
+        const res = await fetch(`${url}/state`);
+        const response = await res.json();
+        const state = response.data[0].descripcion;
+        return state;
+
+    } catch (error) {
+        errors('Error al obtener el estado')
+    }    
 }
 

@@ -1,6 +1,7 @@
 import { errors } from "./alerts.js";
 
-const url = 'http://localhost:4000/shifu/po'
+
+const url = 'https://backend-shifu.onrender.com/shifu/po'
 
 
 const form = document.getElementById('form');
@@ -21,13 +22,21 @@ form.addEventListener('submit', (e) => {
 
 
 function auth (user, allUsers){
-    const findUser = allUsers.find( (u) => user.username == u.username)
+    const findUser = allUsers.find( (u) => user.username === u.username)  
     
-    console.log('Usuario encontrado: ' + findUser)
     if(!findUser) {
         errors('El Usuario no existe')
         return
     }    
-    user.password === findUser.password ? window.location.href = 'estado.html' : errors('Contraseña incorrecta!')
+    if(user.password === findUser.password){
+        const publicUser = { id: findUser.id, username: findUser.username }
+
+        localStorage.setItem('currentUser', JSON.stringify(publicUser));
+        window.location.href = 'estado.html'
+        console.log('Logeado correctamente')
+     }else { 
+        errors('Contraseña incorrecta!')
+    }
 
 }
+
