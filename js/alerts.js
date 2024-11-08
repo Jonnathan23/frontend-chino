@@ -24,3 +24,11 @@ export const warrnings = (message) =>{
         timer: 5000
     })
 }
+
+export const info = (message) => {
+    Swal.fire({        
+        text: message,
+        icon: 'info',
+        timer: 5000
+    })
+}

@@ -6,51 +6,58 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Estado</title>
     <link rel="preload" href="styles/styles.css" as="style">
+    <link rel="preload" href="styles/normalize.css" as="style">    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <link rel="stylesheet" href="styles/normalize.css">
     <link rel="stylesheet" href="styles/styles.css">
+   
 </head>
 
 <body>
-    <header class="nav-fondo">
-        <div class="titulo">
-            <h1>Proyecto Interciclo</h1>
-        </div>
-        <div class="cont-nav nav-principal">
-            <nav>                
-                <a href="#">Registrarse</a>
-                <a href="#">Usuarios</a>
-                <a id="signOut" href="index.html">Cerrar Sesion</a>
-            </nav>
-        </div>
-    </header>
-    <main>
-        <div>
-            <button id="abrir">Abrir</button>
-            <button id="cerrar">Cerrar</button>
-        </div>
-
-    </main>
-
-    <footer>
-        <section class="contactos">
-            <div class="contac-div">
-                <h4>Estudiantes</h4>
-                <ul>
-                    <li>Lizbeth Ceballos</li>
-                    <li>Deivid Guncay</li>
-                    <li>César Sarmiento</li>
-                    <li>Francisco Valdez</li>
-                </ul>
+    <div class="container">
+        <header class="nav-fondo">
+            <div class="titulo">
+                <h1>Proyecto Interciclo</h1>
+            </div>
+            <div class="cont-nav nav-principal">
+                <nav>
+                    <a onclick="alert('Proximamente')" href="#">Registrarse</a>
+                    <a onclick="alert('Proximamente')" href="#">Usuarios</a>
+                    <a id="signOut" href="index.html">Cerrar Sesion</a>
+                </nav>
+            </div>
+        </header>
+        <main>
+            <div class="cont--buttons">
+                <button id="abrir">Abrir</button>
+                <button id="cerrar">Cerrar</button>
             </div>
 
-            <div class="imagen-footer">
-                <img src="imgs/upsImg.png" alt="">
-            </div>
-        </section>
+        </main>
 
-        <section class="fecha">
-            <p>Proyecto interciclo, <span>Periodo 65</span></p>
-        </section>
-    </footer>    
+        <footer>
+            <section class="contactos">
+                <div class="contac-div">
+                    <h4>Estudiantes</h4>
+                    <ul>
+                        <li>Lizbeth Ceballos</li>
+                        <li>Deivid Guncay</li>
+                        <li>César Sarmiento</li>
+                        <li>Francisco Valdez</li>
+                    </ul>
+                </div>
+
+                <div class="imagen-footer">
+                    <img src="imgs/upsImg.png" alt="">
+                </div>
+            </section>
+
+            <section class="fecha">
+                <p>Proyecto interciclo, <span>Periodo 65</span></p>
+            </section>
+        </footer>
+    </div>
+
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script type="module" src="js/estado.js"></script>
 
